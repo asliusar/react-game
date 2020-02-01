@@ -1,13 +1,17 @@
 import React from 'react'
+import CellTable from "./CellTable"
+import GameHeader from "./GameHeader"
 
 interface GamePaneProps {
     className?: string
 }
 
-const GamePane = ({className} : GamePaneProps) => {
+const GamePane = ({className}: GamePaneProps) => {
+
     return (
         <div className={className}>
-            Game Pane
+            <GameHeader />
+            <CellTable />
         </div>
     )
 }
