@@ -1,26 +1,34 @@
 import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import GamePane from './scenes/GamePane';
+import Controls from './scenes/Controls';
+import {makeStyles} from "@material-ui/styles";
+
+const useStyles = makeStyles({
+    container: {
+        width: '100vw',
+        height: '100vh',
+        display: 'grid',
+        gridTemplateColumns: 'auto',
+        gridTemplateRows: 'auto 100px',
+        gridTemplateAreas: '"game" "controls"'
+    },
+    gamePane: {
+        gridArea: 'game'
+    },
+    controls: {
+        gridArea: 'controls'
+    }
+});
 
 const App = () => {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+    const classes = useStyles()
+
+    return (
+        <div className={classes.container}>
+            <GamePane className={classes.gamePane} />
+            <Controls className={classes.controls}/>
+        </div>
+    );
 }
 
 export default App;
