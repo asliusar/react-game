@@ -29,29 +29,29 @@ const cloneArray = (array: Array<Array<number>>) => array.map(function (arr) {
 
 export const mutateUnderpopulation = (
     i: number, j: number, cells: Array<Array<number>>
-): number  => {
+): number => {
 
     return calculateNeighbours(i, j, cells) < 2 ? 0 : 1
 }
 
 export const mutateDeadCells = (
     i: number, j: number, cells: Array<Array<number>>
-): number  => {
+): number => {
 
     const sum = calculateNeighbours(i, j, cells)
-    return  1 < sum && sum < 5 ? 1 : 0
+    return 1 < sum && sum < 5 ? 1 : 0
 }
 
 export const mutateOvercrowding = (
     i: number, j: number, cells: Array<Array<number>>
-): number  => {
+): number => {
 
     return calculateNeighbours(i, j, cells) > 3 ? 0 : 1
 }
 
 export const mutateReproduction = (
     i: number, j: number, cells: Array<Array<number>>
-): number  => {
+): number => {
     return calculateNeighbours(i, j, cells) === 3 ? 1 : 0
 }
 
@@ -67,30 +67,23 @@ const mutateCells = (cells: Array<Array<number>>): Array<Array<number>> => {
                     && mutateDeadCells(i, j, cells)
                     && mutateOvercrowding(i, j, cells)
             }
-            // nextGenCells[i][j] = mutateDeadCells(i, j, cells)
-            // nextGenCells[i][j] = mutateOvercrowding(i, j, cells)
-            // nextGenCells[i][j] = mutateReproduction(i, j, cells)
-            // let updatedCell = mutateUnderpopulation(i, j, cells)
-            // if (updatedCell === null) {
-            //     updatedCell = mutateDeadCells(i, j, cells)
-            //     if (updatedCell === null) {
-            //         updatedCell = mutateOvercrowding(i, j, cells)
-            //         if (updatedCell === null) {
-            //             updatedCell = mutateReproduction(i, j, cells)
-            //         }
-            //
-            //     }
-            // }
-            // if (updatedCell !== null) {
-            //     nextGenCells[i][j] = updatedCell
-            // }
-
         }
     }
 
     return nextGenCells
 }
 
+// TODO cover with tests
+const toggleCell = (
+    i: number, j: number, cells: Array<Array<number>>
+): Array<Array<number>> => {
+    let nextGenCells = cloneArray(cells)
+    nextGenCells[i][j] = Number(!cells[i][j])
+
+    return nextGenCells
+}
+
 export default {
-    mutateCells
+    mutateCells,
+    toggleCell
 }

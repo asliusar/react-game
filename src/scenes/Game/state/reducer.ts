@@ -13,29 +13,12 @@ const initState = {
     cells: new Array(Math.sqrt(NUMBER_OF_CELLS)).fill(new Array(Math.sqrt(NUMBER_OF_CELLS)).fill(0))
 } as Store
 
-// const initState = {
-//     cells: [
-//         [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-//         [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-//         [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-//         [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-//         [0, 0, 0, 1, 1, 1, 0, 0, 0, 0],
-//         [0, 0, 1, 1, 1, 0, 0, 0, 0, 0],
-//         [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-//         [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-//         [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-//         [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-//     ]
-// } as Store
-
 export default (state = initState, action: any) => {
     switch (action.type) {
         case ACTION.MUTATE_CELLS:
-            const newGeneration = GameEngine.mutateCells(state.cells)
-
             return {
                 ...state,
-                cells: newGeneration
+                cells: GameEngine.mutateCells(state.cells)
             }
 
         case ACTION.TOGGLE_GAME:
@@ -43,7 +26,11 @@ export default (state = initState, action: any) => {
                 ...state,
                 isPaused: action.value
             }
-
+        case ACTION.TOGGLE_CELL:
+            return {
+                ...state,
+                cells: GameEngine.toggleCell(action.i, action.j, state.cells)
+            }
         default:
             return state;
     }

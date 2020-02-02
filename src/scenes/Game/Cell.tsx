@@ -1,12 +1,13 @@
 import React from 'react'
-import {CELL_WIDTH} from "../../../App"
+import {CELL_WIDTH} from "../../App"
 
 interface CellProps {
     className?: string,
-    isSelected: number
+    isSelected: number,
+    onClick: () => void
 }
 
-export default ({className, isSelected}: CellProps) => {
+export default ({className, isSelected, onClick}: CellProps) => {
     return (
         <td
             className={className}
@@ -15,6 +16,7 @@ export default ({className, isSelected}: CellProps) => {
                 height: CELL_WIDTH,
                 backgroundColor: isSelected ? "black" : "white"
             }}
+            onClick={onClick}
         >
         </td>
     )

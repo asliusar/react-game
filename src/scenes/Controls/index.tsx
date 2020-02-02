@@ -29,7 +29,7 @@ interface ControlPanel {
 const PauseControls = ({classes, onChange}: ControlPanel) => (
     <div className={classes.content}>
         <Button
-            variant="outlined"
+            variant="contained"
             color="primary"
             onClick={onChange}
         >
@@ -45,12 +45,13 @@ const PauseControls = ({classes, onChange}: ControlPanel) => (
 const ResumeControls = ({classes, onChange}: ControlPanel) => (
     <div className={classes.content}>
         <Button
-            variant="outlined"
-            color="primary"
+            variant="contained"
+            color="secondary"
             onClick={onChange}
         >
             Pause
         </Button>
+
         <div className={classes.hint}>
             Pause the game to change the selection
         </div>
