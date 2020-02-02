@@ -1,7 +1,5 @@
 import React from 'react'
 import CellTable from "./components/CellTable"
-import GameHeader from "./components/GameHeader"
-import {selectCells} from "./state/selector"
 import {connect} from "react-redux"
 import {bindActionCreators} from "redux"
 import {startCellMutation} from "./state/actions"
@@ -11,15 +9,14 @@ interface GamePaneProps {
     startCellMutation: () => void
 }
 
-const GamePane = ({className, startCellMutation}: GamePaneProps) => {
+const Game = ({className, startCellMutation}: GamePaneProps) => {
     React.useEffect(() => {
         startCellMutation()
     }, [])
 
     return (
         <div className={className}>
-            <GameHeader />
-            <CellTable />
+            <CellTable/>
         </div>
     )
 }
@@ -31,4 +28,4 @@ const mapDispatchToProps = (dispatch: any) => ({
 })
 
 
-export default connect(null, mapDispatchToProps)(GamePane)
+export default connect(null, mapDispatchToProps)(Game)
