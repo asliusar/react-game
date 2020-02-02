@@ -1,7 +1,7 @@
 import React from 'react'
 import {makeStyles} from "@material-ui/styles"
 import Cell from "./Cell"
-import {CELLS_IN_ROW} from "../../App"
+import {CELLS_IN_ROW} from "../../../App"
 
 const useStyles = makeStyles({
     cellContainer: {

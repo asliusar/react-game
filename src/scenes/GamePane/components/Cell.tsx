@@ -1,5 +1,5 @@
 import React from 'react'
-import {CELL_WIDTH} from "../../App"
+import {CELL_WIDTH} from "../../../App"
 
 interface CellProps {
     className?: string

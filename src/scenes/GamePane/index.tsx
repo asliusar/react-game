@@ -1,6 +1,6 @@
 import React from 'react'
-import CellTable from "./CellTable"
-import GameHeader from "./GameHeader"
+import CellTable from "./components/CellTable"
+import GameHeader from "./components/GameHeader"
 
 interface GamePaneProps {
     className?: string
