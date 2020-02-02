@@ -15,7 +15,13 @@
     "react": "^16.12.0",
     "react-dom": "^16.12.0",
     "react-scripts": "3.3.1",
-    "typescript": "^3.7.5"
+    "typescript": "^3.7.5",
+    "react-router-redux": "latest",
+    "redux-thunk": "latest",
+    "redux-devtools-extension": "latest",
+    "redux": "latest",
+    "history": "latest",
+    "react-redux": "latest"
   },
   "scripts": {
     "start": "react-scripts start",
@@ -37,5 +43,8 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "devDependencies": {
+    "@types/react-redux": "^7.1.7"
   }
 }

@@ -2,10 +2,11 @@ import React from 'react';
 import GamePane from './scenes/GamePane';
 import Controls from './scenes/Controls';
 import {makeStyles} from "@material-ui/styles";
+import {Provider} from 'react-redux';
+import store from "./store"
+import {NUMBER_OF_CELLS} from "./scenes/GamePane/state/reducer"
 
 export const CELL_WIDTH = 50
-export const CELLS_IN_ROW = 11
-export const ROW_WIDTH = CELL_WIDTH * CELLS_IN_ROW
 
 const useStyles = makeStyles({
     container: {
@@ -28,10 +29,12 @@ const App = () => {
     const classes = useStyles()
 
     return (
-        <div className={classes.container} style={{width: ROW_WIDTH}}>
-            <GamePane className={classes.gamePane} />
-            <Controls className={classes.controls}/>
-        </div>
+        <Provider store={store}>
+            <div className={classes.container} style={{width: Math.sqrt(NUMBER_OF_CELLS) * CELL_WIDTH}}>
+                <GamePane className={classes.gamePane} />
+                <Controls className={classes.controls}/>
+            </div>
+        </Provider>
     );
 }
 

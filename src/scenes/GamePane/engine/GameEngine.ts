@@ -17,10 +17,7 @@ export const calculateNeighbours = (
     return [-1, 0, 1].reduce((accX: number, x: number) => {
         return accX + [-1, 0, 1].reduce((accY: number, y: number) => {
             if (x === 0 && y === 0) return accY
-            // console.log(i, x, calculateIndex(i + x))
-            // console.log(j, y, calculateIndex(j + y))
-            // console.log(array[calculateIndex(i + x)][calculateIndex(j + y)])
-            // console.log("---------")
+
             return accY + array[calculateIndex(i + x)][calculateIndex(j + y)]
         }, 0)
     }, 0)
@@ -30,20 +27,64 @@ const cloneArray = (array: Array<Array<number>>) => array.map(function (arr) {
     return arr.slice()
 })
 
-const mutateUnderpopulation = (
+export const mutateUnderpopulation = (
     i: number, j: number, cells: Array<Array<number>>
-): number => {
-    if (!cells[i][j]) return 0
-    // console.log(i, j)
-    // console.log(calculateNeighbours(i, j, cells))
+): number  => {
+
     return calculateNeighbours(i, j, cells) < 2 ? 0 : 1
+}
+
+export const mutateDeadCells = (
+    i: number, j: number, cells: Array<Array<number>>
+): number  => {
+
+    const sum = calculateNeighbours(i, j, cells)
+    return  1 < sum && sum < 5 ? 1 : 0
+}
+
+export const mutateOvercrowding = (
+    i: number, j: number, cells: Array<Array<number>>
+): number  => {
+
+    return calculateNeighbours(i, j, cells) > 3 ? 0 : 1
+}
+
+export const mutateReproduction = (
+    i: number, j: number, cells: Array<Array<number>>
+): number  => {
+    return calculateNeighbours(i, j, cells) === 3 ? 1 : 0
 }
 
 const mutateCells = (cells: Array<Array<number>>): Array<Array<number>> => {
     let nextGenCells = cloneArray(cells)
+
     for (let i = 0; i < cells.length; i++) {
         for (let j = 0; j < cells[i].length; j++) {
-            nextGenCells[i][j] = mutateUnderpopulation(i, j, cells)
+            if (!cells[i][j]) {
+                nextGenCells[i][j] = mutateReproduction(i, j, cells)
+            } else {
+                nextGenCells[i][j] = mutateUnderpopulation(i, j, cells)
+                    && mutateDeadCells(i, j, cells)
+                    && mutateOvercrowding(i, j, cells)
+            }
+            // nextGenCells[i][j] = mutateDeadCells(i, j, cells)
+            // nextGenCells[i][j] = mutateOvercrowding(i, j, cells)
+            // nextGenCells[i][j] = mutateReproduction(i, j, cells)
+            // let updatedCell = mutateUnderpopulation(i, j, cells)
+            // if (updatedCell === null) {
+            //     updatedCell = mutateDeadCells(i, j, cells)
+            //     if (updatedCell === null) {
+            //         updatedCell = mutateOvercrowding(i, j, cells)
+            //         if (updatedCell === null) {
+            //             updatedCell = mutateReproduction(i, j, cells)
+            //         }
+            //
+            //     }
+            // }
+            // if (updatedCell !== null) {
+            //     nextGenCells[i][j] = updatedCell
+            // }
+
         }
     }
 

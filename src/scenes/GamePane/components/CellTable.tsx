@@ -1,7 +1,10 @@
 import React from 'react'
 import {makeStyles} from "@material-ui/styles"
 import Cell from "./Cell"
-import {CELLS_IN_ROW} from "../../../App"
+import {NUMBER_OF_CELLS} from "../state/reducer"
+import {connect} from "react-redux"
+import {bindActionCreators} from "redux"
+import {selectCells} from "../state/selector"
 
 const useStyles = makeStyles({
     cellContainer: {
@@ -16,17 +19,20 @@ const useStyles = makeStyles({
     }
 })
 
-const CellTable = () => {
-    const classes = useStyles()
-    const row = Array.from(Array(CELLS_IN_ROW).keys());
+interface CellTableProps {
+    cells: Array<Array<number>>
+}
 
+const CellTable = ({cells}: CellTableProps) => {
+    const classes = useStyles()
     return (
         <table className={classes.cellContainer}>
             <tbody>
-                {row.map(trId => (
+                {cells.map((row, trId) => (
                     <tr key={trId}>
-                        {row.map(tdId => (
+                        {row.map((cell, tdId) => (
                             <Cell
+                                isSelected={cell}
                                 key={trId * 10 + tdId}
                                 className={classes.cell}
                             />
@@ -38,4 +44,8 @@ const CellTable = () => {
     )
 }
 
-export default CellTable
+const mapStateToProps = (state: any) => ({
+    cells: selectCells(state)
+})
+
+export default connect(mapStateToProps)(CellTable)
