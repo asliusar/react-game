@@ -1,5 +1,10 @@
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
+## Docker
+`npm run build`
+`docker build --no-cache -t game .`
+`docker run -d --name game -p 80:80 game`
+
 ## Available Scripts
 
 In the project directory, you can run:
