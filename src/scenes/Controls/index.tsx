@@ -1,11 +1,11 @@
 import React from 'react'
 import {makeStyles} from "@material-ui/styles"
-import {Button} from "@material-ui/core"
 import {selectIsPaused} from "../Game/state/selector"
 import {connect} from "react-redux"
 import {bindActionCreators} from "redux"
 import {startCellMutation, stopCellMutation} from "../Game/state/actions"
-
+import PauseControls from "./PauseControls"
+import LiveControls from "./LiveControls"
 
 const useStyles = makeStyles({
     content: {
@@ -21,43 +21,6 @@ const useStyles = makeStyles({
     }
 })
 
-interface ControlPanel {
-    classes?: any,
-    onChange: () => void
-}
-
-const PauseControls = ({classes, onChange}: ControlPanel) => (
-    <div className={classes.content}>
-        <Button
-            variant="contained"
-            color="primary"
-            onClick={onChange}
-        >
-            Resume
-        </Button>
-        <div className={classes.hint}>
-            Please select cells
-        </div>
-    </div>
-)
-
-
-const ResumeControls = ({classes, onChange}: ControlPanel) => (
-    <div className={classes.content}>
-        <Button
-            variant="contained"
-            color="secondary"
-            onClick={onChange}
-        >
-            Pause
-        </Button>
-
-        <div className={classes.hint}>
-            Pause the game to change the selection
-        </div>
-    </div>
-)
-
 interface ControlsProps {
     className?: string
     isPaused: boolean,
@@ -65,7 +28,7 @@ interface ControlsProps {
     stopCellMutation: () => void
 }
 
-const Controls = (props: ControlsProps) => {
+export const Controls = (props: ControlsProps) => {
     const classes = useStyles()
     return (
         <div className={`${props.className}`}>
@@ -74,7 +37,7 @@ const Controls = (props: ControlsProps) => {
                     classes={classes}
                     onChange={() => props.startCellMutation()}
                 />
-                : <ResumeControls
+                : <LiveControls
                     classes={classes}
                     onChange={() => props.stopCellMutation()}
                 />
