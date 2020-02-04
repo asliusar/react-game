@@ -10,6 +10,7 @@ interface CellProps {
 export default ({className, isSelected, onClick}: CellProps) => {
     return (
         <td
+            data-testid="game-table-td"
             className={className}
             style={{
                 width: CELL_WIDTH,

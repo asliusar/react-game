@@ -26,13 +26,13 @@ interface GameProps {
     toggleCell: (i: number, j: number) => void
 }
 
-const Game = ({cells, isPaused, toggleCell, className}: GameProps) => {
+export const Game = ({cells, isPaused, toggleCell, className}: GameProps) => {
     const classes = useStyles()
     return (
         <table className={`${className} ${classes.cellContainer}`}>
             <tbody>
             {cells.map((row, trId) => (
-                <tr key={trId}>
+                <tr key={trId} data-testid="game-table-tr">
                     {row.map((cell, tdId) => (
                         <Cell
                             key={trId * 10 + tdId}
