@@ -73,7 +73,6 @@ const mutateCells = (cells: Array<Array<number>>): Array<Array<number>> => {
     return nextGenCells
 }
 
-// TODO cover with tests
 const toggleCell = (
     i: number, j: number, cells: Array<Array<number>>
 ): Array<Array<number>> => {
