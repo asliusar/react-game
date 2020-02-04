@@ -16,6 +16,9 @@ There is Modular Architecture bases on Flux. All components are split on modules
 More details here.
 https://www.slideshare.net/LogeekNightUkraine/andrii-sliusar-module-architecture-of-reactredux-applications
 
+## TO DO
+1. Add more contols
+2. Setup .babelrc to delete data-testid attributes
 
 ## Available Scripts
 
