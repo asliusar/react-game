@@ -10,6 +10,16 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 
 `docker run -d --name game -p 80:80 game`
 
+## Architecture
+There is Modular Architecture bases on Flux. All components are split on modules like "Header", "Game", "Controls". Thay communicate with each other over Redux.
+
+More details here.
+https://www.slideshare.net/LogeekNightUkraine/andrii-sliusar-module-architecture-of-reactredux-applications
+
+## TO DO
+1. Add more contols
+2. Setup .babelrc to delete data-testid attributes
+
 ## Available Scripts
 
 In the project directory, you can run:

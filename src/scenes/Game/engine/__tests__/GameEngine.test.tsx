@@ -74,6 +74,21 @@ describe('test engine', () => {
         expect(mutateReproduction(2, 2, input)).toEqual(1)
     })
 
+    test('should toggle cell in the table', () => {
+        const input = [
+            [0, 0],
+            [0, 0]
+        ]
+
+        const output = [
+            [1, 0],
+            [0, 0]
+        ]
+
+        expect(GameEngine.toggleCell(0, 0, input)).toEqual(output)
+    })
+
+
     test('test calculateNeighbours', () => {
         const input = [
             [0, 0, 0 ,0 ,1],
