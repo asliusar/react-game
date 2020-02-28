@@ -4,6 +4,9 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 `npm start`
 
 ## Docker
+
+`npm i`
+
 `npm run build`
 
 `docker build --no-cache -t game .`
