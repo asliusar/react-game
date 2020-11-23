@@ -1,4 +1,10 @@
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+# Evolution game
+### Rules 
+When a grid “ticks”, these are the rules to determine the next state of the grid:
+1. Any live cell with fewer than two live neighbours dies (underpopulation).
+2. Any live cell with two or three live neighbours lives on to the next generation.
+3. Any live cell with more than three live neighbours dies (overcrowding).
+4. Any dead cell with exactly three live neighbours becomes a live cell (reproduction).
 
 ## How to run it?
 `npm start`
